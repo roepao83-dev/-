@@ -15,7 +15,7 @@ body {
     transform-style: preserve-3d;
 
     /* 🔥 главный фикс */
-    transform: rotateY(25deg) rotateX(10deg);
+    transform: rotateY(12deg) rotateX(4deg);
 }
 
 .text {
@@ -74,24 +74,24 @@ body {
 @media (max-width: 768px) {
 
     body {
-        perspective: 600px; /* ближе камера */
+        perspective: 500px; /* ближе камера */
     }
 
     .scene {
-        width: 180vw;
-        height: 140vh;
-        left: -40vw;
+        width: 160vw;
+        height: 130vh;
+        left: -30vw;
 
-        /* меньше наклон + ближе */
-        transform: rotateY(15deg) rotateX(6deg);
+        /* 🔥 мягкий наклон (не завален) */
+        transform: rotateY(8deg) rotateX(2deg);
     }
 
     .text {
-        font-size: 22px !important;
+        font-size: 28px !important; /* 🔥 текст больше */
     }
 
     .img {
-        width: 160px !important;
-        height: 120px !important;
+        width: 180px !important;
+        height: 135px !important;
     }
 }
