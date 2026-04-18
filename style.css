@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+    perspective: 1200px;
+    font-family: Arial, sans-serif;
+}
+
+.scene {
+    width: 140vw;              /* шире экрана */
+    height: 120vh;
+    position: relative;
+    left: -20vw;               /* сдвиг чтобы убрать пустоту */
+
+    transform-style: preserve-3d;
+
+    /* 🔥 главный фикс */
+    transform: rotateY(25deg) rotateX(10deg);
+}
+
+.text {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    white-space: nowrap;
+    transform-style: preserve-3d;
+    transform: translateX(-50%);
+    
+    /* 🔥 две анимации сразу */
+    animation-name: fall, colorShift;
+    animation-timing-function: linear, linear;
+    animation-fill-mode: forwards, forwards;
+    font-family: "BIZ UDPGothic", sans-serif;
+}
+.img {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    opacity: 0.9;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));
+    object-fit: cover;
+}
+@keyframes fall {
+    0% {
+        transform: translateX(-50%) translateY(-100px) translateZ(var(--z));
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(120vh) translateZ(var(--z));
+        opacity: 0;
+    }
+}
+
+@keyframes colorShift {
+    0% {
+        color: #ffffff;
+        text-shadow: 0 0 6px #ffffff, 0 0 12px #ffffff;
+    }
+    100% {
+        color: #ff1a1a;
+        text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff0000;
+    }
+}

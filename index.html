@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Поздравление</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic&family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="scene" id="scene"></div>
+
+<script>
+const messages = [
+    "happy",
+    "Happy Birthday✨🎉",
+    "all the best, Dad💖",
+    "stay strong✨",
+    "you've got this",
+    "all the best, Dad🎉",
+    "stay strong✨",
+    "you've got this",
+];
+const images = [
+    "1.jpg",
+    "2.jpg",
+    "3.jpg",
+    "4.jpg",
+    "5.jpg",
+    "6.jpg",
+];
+
+const scene = document.getElementById("scene");
+function createImage() {
+    const img = document.createElement("img");
+    img.className = "img";
+
+    img.src = images[Math.floor(Math.random() * images.length)];
+
+    // глубина
+    let z = -(Math.random() * 800);
+    img.style.setProperty("--z", z + "px");
+
+    // позиция
+    img.style.left = Math.random() * 140 - 20 + "%";
+
+   img.style.width = "200px";
+   img.style.height = "150px";
+    // скорость
+    let duration = 6 + (z / -800) * 6;
+    img.style.animationDuration = duration + "s";
+
+    scene.appendChild(img);
+
+    setTimeout(() => img.remove(), duration * 1000);
+}
+
+function createText() {
+    const el = document.createElement("div");
+    el.className = "text";
+
+    el.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+    // глубина (как слои на фото)
+    let z = -(Math.random() * 800);
+
+    el.style.setProperty("--z", z + "px");
+
+    // шире распределение (чтобы как "стена текста")
+    el.style.left = Math.random() * 140 - 20 + "%";
+
+    // размер (чем ближе — тем больше)
+    let size = 18 + (z / -800) * 40;
+    el.style.fontSize = size + "px";
+
+    // скорость (дальние медленнее)
+    let duration = 6 + (z / -800) * 6;
+    el.style.animationDuration = duration + "s, " + duration + "s";
+
+    // белый неон как на фото
+    el.style.color = "#ffffff";
+    el.style.textShadow = `
+        0 0 6px #ffffff,
+        0 0 12px #ffffff,
+        0 0 20px rgba(255,255,255,0.5)
+    `;
+
+    scene.appendChild(el);
+
+    setTimeout(() => el.remove(), duration * 1000);
+}
+
+// плотный поток текста
+setInterval(createText, 100);
+setInterval(createImage, 2000);
+</script>
+
+</body>
+</html>
