@@ -71,3 +71,27 @@ body {
         text-shadow: 0 0 10px #ff1a1a, 0 0 20px #ff0000;
     }
 }
+@media (max-width: 768px) {
+
+    body {
+        perspective: 600px; /* ближе камера */
+    }
+
+    .scene {
+        width: 180vw;
+        height: 140vh;
+        left: -40vw;
+
+        /* меньше наклон + ближе */
+        transform: rotateY(15deg) rotateX(6deg);
+    }
+
+    .text {
+        font-size: 22px !important;
+    }
+
+    .img {
+        width: 160px !important;
+        height: 120px !important;
+    }
+}
